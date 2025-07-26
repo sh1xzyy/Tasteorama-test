@@ -1,0 +1,23 @@
+{
+	"name": "tasteorama-test",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sh1xzyy/Tasteorama-test.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sh1xzyy/Tasteorama-test/issues"
+	},
+	"homepage": "https://github.com/sh1xzyy/Tasteorama-test#readme",
+	"description": "",
+	"dependencies": {
+		"selenium-webdriver": "^4.34.0"
+	}
+}
