@@ -1,5 +1,5 @@
 const { Builder } = require('selenium-webdriver')
-const { authorization } = require('/tests/authorization.js')
+const { authorization } = require('./tests/authorization.js')
 const { authentication } = require('./tests/authentication.js')
 const { searchBar } = require('./tests/searchBar.js')
 const { logout } = require('./tests/logout.js')
