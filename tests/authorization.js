@@ -43,7 +43,7 @@ const authorization = async driver => {
 	)
 
 	const submitBtn = await driver.wait(
-		until.elementLocated(By.css('button[type="submit"]')),
+		until.elementLocated(By.xpath('//button[contains(text(), "Register")]')),
 		5000
 	)
 

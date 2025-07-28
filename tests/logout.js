@@ -1,4 +1,5 @@
 const { until, By, Key } = require('selenium-webdriver')
+const { sleep } = require('../utils/sleep')
 
 const logout = async driver => {
 	// Ждем пока кнопка не появится в DOM
@@ -10,7 +11,7 @@ const logout = async driver => {
 
 	await logoutBtn.sendKeys(Key.RETURN)
 
-	await driver.sleep(2000)
+	await sleep(driver, 2000)
 
 	// Ждем пока кнопка выхода появится в DOM
 	const logoutSubmitBtn = await driver.wait(
