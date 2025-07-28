@@ -7,6 +7,8 @@ const { loadMore } = require('./tests/loadMore.js')
 const { categorySelector } = require('./tests/categorySelector.js')
 const { ingredientsSelector } = require('./tests/ingredientsSelector.js')
 const { resetFilter } = require('./tests/resetFilter.js')
+const { addRecipe } = require('./tests/addRecipe.js')
+const { sleep } = require('./utils/sleep.js')
 ;(async function startTest() {
 	let driver = await new Builder().forBrowser('chrome').build()
 	try {
@@ -15,16 +17,17 @@ const { resetFilter } = require('./tests/resetFilter.js')
 
 		// await authorization(driver)
 		await authentication(driver)
-		await categorySelector(driver)
+		// await categorySelector(driver)
 		// await ingredientsSelector(driver)
-		await resetFilter(driver)
-		await searchBar(driver)
-		await loadMore(driver)
-		await logout(driver)
+		// await resetFilter(driver)
+		// await searchBar(driver)
+		// await loadMore(driver)
+		await addRecipe(driver)
+		// await logout(driver)
 	} catch (error) {
 		console.log('Something went wrong:', error)
 	} finally {
-		await driver.sleep(5000)
-		await driver.quit()
+		// await driver.sleep(5000)
+		// await driver.quit()
 	}
 })()
