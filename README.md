@@ -8,4 +8,4 @@
 
 3. Start the development server:
    ```bash
-   node main.js
+   node src/main.js
