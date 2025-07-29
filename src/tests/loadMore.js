@@ -3,6 +3,8 @@ const { sleep } = require('../utils/sleep')
 const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
 
 const loadMore = async driver => {
+	console.log('--------------- Load More Started ---------------')
+
 	// Находим кнопку Load More
 	const loadMoreBtn = await driver.wait(
 		until.elementLocated(By.xpath('//button[contains(text(), "Load More")]'))

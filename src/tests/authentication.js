@@ -3,6 +3,8 @@ const { slowType } = require('../utils/slowType')
 const { isAllFieldFilled } = require('../utils/isAllFieldFilled')
 
 const authentication = async driver => {
+	console.log('--------------- Authentication Started ---------------')
+
 	// Находим кнопку Login в DOM
 	const loginBtn = await driver.wait(
 		until.elementLocated(By.css('nav a[href="/auth/login"]'))

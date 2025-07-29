@@ -4,6 +4,8 @@ const { slowType } = require('../utils/slowType.js')
 const { isAllFieldFilled } = require('../utils/isAllFieldFilled.js')
 
 const authorization = async driver => {
+	console.log('--------------- Authorization Started ---------------')
+
 	// Ждем пока кнопка не появится в DOM
 	const authorizationBtn = await driver.wait(
 		until.elementLocated(By.css('nav a[href="/auth/register"]')),

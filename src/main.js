@@ -14,22 +14,51 @@ const { saveFavoriteRecipe } = require('./tests/saveFavoriteRecipe.js')
 	let driver = await new Builder().forBrowser('chrome').build()
 	try {
 		await driver.get('https://final-project-frontend-snowy.vercel.app/')
-		console.log('Started')
+		console.log('--------------- Started ---------------')
 
+		// #Authorization
 		// await authorization(driver)
+		// await sleep(driver, 2000)
+
+		// #Authentication
 		await authentication(driver)
+		await sleep(driver, 2000)
+
+		// #Category Selector
 		// await categorySelector(driver)
+		// await sleep(driver, 2000)
+
+		// #Ingredients Selector
 		// await ingredientsSelector(driver)
+		// await sleep(driver, 2000)
+
+		// #Reset Filter
 		await resetFilter(driver)
+		await sleep(driver, 2000)
+
+		// #Search Bar
 		await searchBar(driver)
+		await sleep(driver, 2000)
+
+		// #Load More
 		await loadMore(driver)
+		await sleep(driver, 2000)
+
+		// #Save Recipe To Favorite
 		await saveFavoriteRecipe(driver)
+		await sleep(driver, 2000)
+
+		// #Add Recipe
 		await addRecipe(driver)
+		await sleep(driver, 2000)
+
+		// #Logout
 		await logout(driver)
+		await sleep(driver, 2000)
 	} catch (error) {
-		console.log('Something went wrong:', error)
+		console.log('--------------- Something went wrong:', error)
 	} finally {
-		console.log('End')
+		console.log('--------------- End ---------------')
 		await driver.sleep(5000)
 		await driver.quit()
 	}

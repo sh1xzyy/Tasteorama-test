@@ -16,7 +16,7 @@ const {
 } = require('../constants/deleteRecipeIngredients')
 
 const addRecipe = async driver => {
-	await sleep(driver, 2000)
+	console.log('--------------- Add Recipe Started ---------------')
 
 	// Находим навигационную кнопку "Add Recipe" и кликаем по ней
 	const addRecipeBtn = await driver.wait(

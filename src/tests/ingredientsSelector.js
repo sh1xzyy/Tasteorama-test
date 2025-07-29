@@ -3,6 +3,8 @@ const { sleep } = require('../utils/sleep')
 const { ingredientsList } = require('../constants/ingredientsList')
 
 const ingredientsSelector = async driver => {
+	console.log('--------------- Ingredients Selector Started ---------------')
+
 	// Находим селектор ингредиентов
 	const ingredientSelector = await driver.wait(
 		until.elementLocated(By.xpath('//span[contains(text(), "Ingredient")]'))

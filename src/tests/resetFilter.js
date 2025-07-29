@@ -2,6 +2,8 @@ const { until, By, Key } = require('selenium-webdriver')
 const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
 
 const resetFilter = async driver => {
+	console.log('--------------- Reset Filter Started ---------------')
+
 	// Находим кнопку Reset Filters и нажимаем на нее
 	const resetFilters = await driver.wait(
 		until.elementLocated(

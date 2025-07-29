@@ -3,6 +3,8 @@ const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
 const { sleep } = require('../utils/sleep')
 
 const saveFavoriteRecipe = async driver => {
+	console.log('--------------- Save Favorite Recipe Started ---------------')
+
 	// Находим рецепт из списка и сохраняем рецепт в избранные
 	for (let i = 0; i < 10; i++) {
 		// Находим рецепт и опускаем viewport к рецепту

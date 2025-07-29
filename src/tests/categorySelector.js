@@ -3,6 +3,8 @@ const { sleep } = require('../utils/sleep')
 const { categoryList } = require('../constants/categoryList')
 
 const categorySelector = async driver => {
+	console.log('--------------- Category Selector Started ---------------')
+
 	// Находим селектор категорий
 	const categorySelector = await driver.wait(
 		until.elementLocated(By.xpath('//span[contains(text(), "Category")]'))
