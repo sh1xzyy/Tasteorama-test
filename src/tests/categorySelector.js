@@ -3,15 +3,15 @@ const { sleep } = require('../utils/sleep')
 const { categoryList } = require('../constants/categoryList')
 
 const categorySelector = async driver => {
+	// Находим селектор категорий
 	const categorySelector = await driver.wait(
 		until.elementLocated(By.xpath('//span[contains(text(), "Category")]'))
 	)
-
 	await driver.wait(until.elementIsVisible(categorySelector), 5000)
 
+	// Проходимся по каждой категории
 	for (let i = 0; i <= categoryList.length; i++) {
 		await categorySelector.click()
-
 		await sleep(driver, 1000)
 
 		const currentCategoryItem = await driver.wait(
@@ -19,11 +19,8 @@ const categorySelector = async driver => {
 				By.xpath(`//li[contains(text(), "${categoryList[i]}")]`)
 			)
 		)
-
 		await driver.wait(until.elementIsVisible(currentCategoryItem))
-
 		await sleep(driver, 1000)
-
 		await currentCategoryItem.click()
 	}
 }

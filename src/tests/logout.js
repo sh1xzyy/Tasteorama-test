@@ -1,16 +1,18 @@
 const { until, By, Key } = require('selenium-webdriver')
 const { sleep } = require('../utils/sleep')
+const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
 
 const logout = async driver => {
-	// Ожидание и клик по кнопке Logout
+	// Находим кнопку Logout и нажимаем
 	const logoutBtn = await driver.wait(
 		until.elementLocated(By.css('button[aria-label="Logout"]'))
 	)
 	await driver.wait(until.elementIsVisible(logoutBtn), 5000)
+	await scrollWindowToElement(driver, logoutBtn, 1000)
 	await logoutBtn.sendKeys(Key.RETURN)
 	await sleep(driver, 1000)
 
-	// Ожидание и клик по кнопке выйти из окна выхода пользователя
+	// Находим кнопку закрывающую модальное окно для подтверждения выхода пользователя
 	const closeBtn = await driver.wait(
 		until.elementLocated(
 			By.css(
@@ -22,9 +24,9 @@ const logout = async driver => {
 	await closeBtn.click()
 	await sleep(driver, 1000)
 	await logoutBtn.sendKeys(Key.RETURN)
-
-	// Ожидание и клик по кнопке отмена для окна выхода пользователя
 	await sleep(driver, 1000)
+
+	// Находим кнопку отменяющую выход пользователя
 	const cancelBtn = await driver.wait(
 		until.elementLocated(By.xpath('//button[contains(text(), "Cancel")]'))
 	)
@@ -32,9 +34,9 @@ const logout = async driver => {
 	await cancelBtn.sendKeys(Key.RETURN)
 	await sleep(driver, 1000)
 	await logoutBtn.sendKeys(Key.RETURN)
-
-	// Ожидание и клик по кнопке подтверждающее выход пользователя
 	await sleep(driver, 1000)
+
+	// Находим кнопку подтверждающую выход пользователя
 	const logoutConfirmBtn = await driver.wait(
 		until.elementLocated(By.xpath('//button[contains(text(), "Log out")]'))
 	)
