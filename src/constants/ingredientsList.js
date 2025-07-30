@@ -1,4 +1,4 @@
-const ingredientsList = [
+const INGREDIENTS_LIST = [
 	'Jalapeno',
 	'Scotch Bonnet',
 	'Olive Oil',
@@ -575,4 +575,4 @@ const ingredientsList = [
 	'Chickpeas',
 ]
 
-module.exports = { ingredientsList }
+module.exports = { INGREDIENTS_LIST }

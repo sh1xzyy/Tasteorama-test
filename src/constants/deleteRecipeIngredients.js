@@ -1,2 +1,2 @@
-const deleteRecipeIngredients = ['Eggs - 4', 'Fish Sauce']
-module.exports = { deleteRecipeIngredients }
+const DELETE_INGREDIENTS_LIST = ['Eggs - 4', 'Fish Sauce']
+module.exports = { DELETE_INGREDIENTS_LIST }

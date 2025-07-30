@@ -1,4 +1,4 @@
-const categoryList = [
+const CATEGORY_LIST = [
 	'Breakfast',
 	'Side',
 	'Seafood',
@@ -16,4 +16,4 @@ const categoryList = [
 	'Goat',
 ]
 
-module.exports = { categoryList }
+module.exports = { CATEGORY_LIST }

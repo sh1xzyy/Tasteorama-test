@@ -1,4 +1,4 @@
-const recipeIngredientList = [
+const RECIPE_INGREDIENTS_LIST = [
 	'Chicken Breasts',
 	'Mushrooms',
 	'Onion',
@@ -11,4 +11,4 @@ const recipeIngredientList = [
 	'Vegetable Oil',
 ]
 
-module.exports = { recipeIngredientList }
+module.exports = { RECIPE_INGREDIENTS_LIST }

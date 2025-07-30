@@ -1,30 +1,32 @@
 const { until, By, Key } = require('selenium-webdriver')
 const { sleep } = require('../utils/sleep')
-const { ingredientsList } = require('../constants/ingredientsList')
+const { INGREDIENTS_LIST } = require('../constants/ingredientsList')
 
 const ingredientsSelector = async driver => {
 	console.log('--------------- Ingredients Selector Started ---------------')
 
-	// Находим селектор ингредиентов
+	// Находим селектор ингредиентов (в DOM и визуально)
 	const ingredientSelector = await driver.wait(
 		until.elementLocated(By.xpath('//span[contains(text(), "Ingredient")]'))
 	)
 	await driver.wait(until.elementIsVisible(ingredientSelector), 5000)
 
-	// Проходимся по каждому ингредиенту
-	for (let i = 0; i <= ingredientsList.length; i++) {
+	// Проходимся по каждому ингредиенту - нажимаем на каждый
+	for (let i = 0; i <= INGREDIENTS_LIST.length; i++) {
 		await ingredientSelector.click()
 		await sleep(driver, 1000)
 
 		const currentIngredientsItem = await driver.wait(
 			until.elementLocated(
-				By.xpath(`//li[contains(text(), "${ingredientsList[i]}")]`)
+				By.xpath(`//li[contains(text(), "${INGREDIENTS_LIST[i]}")]`)
 			)
 		)
 		await driver.wait(until.elementIsVisible(currentIngredientsItem))
 		await sleep(driver, 1000)
 		await currentIngredientsItem.click()
 	}
+
+	return { ingredientsSelectorLog: 'successfully' }
 }
 
 module.exports = { ingredientsSelector }

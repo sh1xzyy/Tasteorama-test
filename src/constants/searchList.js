@@ -1,3 +1,3 @@
-const searchList = ['potato', 'something', 'chicken', '']
+const SEARCH_LIST = ['potato', 'something', 'chicken', '']
 
-module.exports = { searchList }
+module.exports = { SEARCH_LIST }

@@ -2,7 +2,7 @@ const { until, By, Key } = require('selenium-webdriver')
 const { slowType } = require('../utils/slowType')
 const { sleep } = require('../utils/sleep')
 const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
-const { searchList } = require('../constants/searchList')
+const { SEARCH_LIST } = require('../constants/searchList')
 
 const searchBar = async driver => {
 	console.log('--------------- Search Bar Started ---------------')
@@ -15,7 +15,7 @@ const searchBar = async driver => {
 	await scrollWindowToElement(driver, searchField, 1000)
 
 	// Заполняем поле ввода разными значениями
-	for (let char of searchList) {
+	for (let char of SEARCH_LIST) {
 		await slowType(driver, searchField, char, 200)
 		await searchField.sendKeys(Key.RETURN)
 		if (char === 'something' || '') {
@@ -31,6 +31,10 @@ const searchBar = async driver => {
 		}
 		await sleep(driver, 2000)
 	}
+
+	console.log('--------------- Search Bar Ended ---------------')
+
+	return { resetFilterLog: 'successfully' }
 }
 
 module.exports = { searchBar }

@@ -1,18 +1,18 @@
 const { until, By, Key } = require('selenium-webdriver')
 const { slowType } = require('../utils/slowType')
 const { sleep } = require('../utils/sleep')
-const { recipeIngredientList } = require('../constants/recipeIngredientList')
+const { RECIPE_INGREDIENTS_LIST } = require('../constants/recipeIngredientList')
 const {
-	recipeIngredientsAmountList,
+	RECIPE_INGREDIENTS_AMOUNT_LIST,
 } = require('../constants/recipeIngredientsAmountList')
 const path = require('path')
 const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
 const {
-	instructionsText,
-	instructionsDescription,
+	INSTRUCTIONS_TEXT,
+	INSTRUCTIONS_DESC,
 } = require('../constants/addRecipeText')
 const {
-	deleteRecipeIngredients,
+	DELETE_INGREDIENTS_LIST,
 } = require('../constants/deleteRecipeIngredients')
 
 const addRecipe = async driver => {
@@ -49,7 +49,6 @@ const addRecipe = async driver => {
 	const ingredientsName = await driver.wait(
 		until.elementLocated(By.css('select[name="ingredient"]'))
 	)
-
 	const ingredientsAmount = await driver.wait(
 		until.elementLocated(By.css('input[name="amount"]'))
 	)
@@ -90,7 +89,7 @@ const addRecipe = async driver => {
 	await scrollWindowToElement(driver, ingredientsName)
 
 	// #Description
-	await slowType(driver, description, instructionsDescription)
+	await slowType(driver, description, INSTRUCTIONS_DESC)
 	// #Cooking Time
 	await slowType(driver, cookingTime, '45')
 
@@ -103,7 +102,7 @@ const addRecipe = async driver => {
 	await categoryItem.click()
 
 	// #Ingredients name and amount
-	for (let i = 0; i < recipeIngredientList.length; i++) {
+	for (let i = 0; i < RECIPE_INGREDIENTS_LIST.length; i++) {
 		// Ingredients name
 		await sleep(driver, 1000)
 		await ingredientsName.click()
@@ -113,7 +112,7 @@ const addRecipe = async driver => {
 		const ingredientsNameItem = await driver.wait(
 			until.elementLocated(
 				By.css(
-					`select[name="ingredient"] option[value="${recipeIngredientList[i]}"]`
+					`select[name="ingredient"] option[value="${RECIPE_INGREDIENTS_LIST[i]}"]`
 				)
 			)
 		)
@@ -122,16 +121,16 @@ const addRecipe = async driver => {
 		await sleep(driver, 1000)
 
 		// Ingredients amount
-		await slowType(driver, ingredientsAmount, recipeIngredientsAmountList[i])
+		await slowType(driver, ingredientsAmount, RECIPE_INGREDIENTS_AMOUNT_LIST[i])
 		await sleep(driver, 1000)
 		await addIngredient.click()
 	}
 
 	// #Delete some ingredients
-	for (let i = 0; i < deleteRecipeIngredients.length; i++) {
+	for (let i = 0; i < DELETE_INGREDIENTS_LIST.length; i++) {
 		const deleteIngredientBtn = await driver.wait(
 			until.elementLocated(
-				By.xpath(`//li[contains(., "${deleteRecipeIngredients[i]}")]/button`)
+				By.xpath(`//li[contains(., "${DELETE_INGREDIENTS_LIST[i]}")]/button`)
 			)
 		)
 		await driver.wait(until.elementIsVisible(deleteIngredientBtn), 5000)
@@ -143,7 +142,7 @@ const addRecipe = async driver => {
 
 	// #Instructions
 	await scrollWindowToElement(driver, instructions)
-	await slowType(driver, instructions, instructionsText)
+	await slowType(driver, instructions, INSTRUCTIONS_TEXT)
 	await sleep(driver, 1000)
 	await scrollWindowToElement(driver, thumb)
 	await sleep(driver, 1000)
@@ -160,6 +159,10 @@ const addRecipe = async driver => {
 	await scrollWindowToElement(driver, submitBtn)
 	await sleep(driver, 1000)
 	await submitBtn.sendKeys(Key.RETURN)
+
+	console.log('--------------- Add Recipe Ended ---------------')
+
+	return { addRecipeLog: 'successfully' }
 }
 
 module.exports = { addRecipe }

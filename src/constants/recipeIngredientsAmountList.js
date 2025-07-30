@@ -1,4 +1,4 @@
-const recipeIngredientsAmountList = [
+const RECIPE_INGREDIENTS_AMOUNT_LIST = [
 	'500g',
 	'300g',
 	'1 medium',
@@ -11,4 +11,4 @@ const recipeIngredientsAmountList = [
 	'2 tbsp',
 ]
 
-module.exports = { recipeIngredientsAmountList }
+module.exports = { RECIPE_INGREDIENTS_AMOUNT_LIST }
