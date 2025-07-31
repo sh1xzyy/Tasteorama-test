@@ -13,17 +13,16 @@ const { saveFavoriteRecipe } = require('./tests/saveFavoriteRecipe.js')
 const { myRecipes } = require('./tests/myRecipes.js')
 const { mySavedRecipes } = require('./tests/mySavedRecipes.js')
 
-;(async function () {
-	const result = await startTest()
-	console.log('FINAL RESULT:', result)
-})()
+const { timePrettier } = require('./utils/timePrettier.js')
 
-async function startTest() {
+;(async function startTest() {
 	let driver = await new Builder().forBrowser('chrome').build()
 	const result = {}
+	let startTime
 	try {
 		await driver.get('https://final-project-frontend-snowy.vercel.app/')
 		console.log('--------------- Started ---------------')
+		startTime = Date.now()
 
 		// #Authorization
 		// try {
@@ -45,7 +44,7 @@ async function startTest() {
 		}
 		await sleep(driver, 2000)
 
-		// #Category Selector
+		// // #Category Selector
 		// try {
 		// 	const { categorySelectorLog } = await categorySelector(driver)
 		// 	result.categorySelector = { status: 'success', log: categorySelectorLog }
@@ -68,80 +67,80 @@ async function startTest() {
 		// }
 		// await sleep(driver, 2000)
 
-		// // #Reset Filter
-		// try {
-		// 	const { resetFilterLog } = await resetFilter(driver)
-		// 	result.resetFilter = { status: 'success', log: resetFilterLog }
-		// } catch (error) {
-		// 	console.error('Reset Filter FAILED:', error.message)
-		// 	result.resetFilter = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Reset Filter
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Search Bar
-		// try {
-		// 	const { searchBarLog } = await searchBar(driver)
-		// 	result.ingredientsSelector = {
-		// 		status: 'success',
-		// 		log: ingredientsSelectorLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.ingredientsSelector = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Search Bar
+		try {
+			const { searchBarLog } = await searchBar(driver)
+			result.searchBar = {
+				status: 'success',
+				log: searchBarLog,
+			}
+		} catch (error) {
+			console.error('Ingredients Selector FAILED:', error.message)
+			result.searchBar = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Load More
-		// try {
-		// 	const { loadMoreLog } = await loadMore(driver)
-		// 	result.ingredientsSelector = {
-		// 		status: 'success',
-		// 		log: ingredientsSelectorLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.ingredientsSelector = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Load More
+		try {
+			const { loadMoreLog } = await loadMore(driver)
+			result.loadMore = {
+				status: 'success',
+				log: loadMoreLog,
+			}
+		} catch (error) {
+			console.error('Ingredients Selector FAILED:', error.message)
+			result.loadMore = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Save Recipe To Favorite
-		// try {
-		// 	const { saveFavoriteRecipeLog } = await saveFavoriteRecipe(driver)
-		// 	result.saveFavoriteRecipe = {
-		// 		status: 'success',
-		// 		log: saveFavoriteRecipeLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Save Favorite Recipe FAILED:', error.message)
-		// 	result.saveFavoriteRecipe = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Save Recipe To Favorite
+		try {
+			const { saveFavoriteRecipeLog } = await saveFavoriteRecipe(driver)
+			result.saveFavoriteRecipe = {
+				status: 'success',
+				log: saveFavoriteRecipeLog,
+			}
+		} catch (error) {
+			console.error('Save Favorite Recipe FAILED:', error.message)
+			result.saveFavoriteRecipe = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Add Recipe
-		// try {
-		// 	const { addRecipeLog } = await addRecipe(driver)
-		// 	result.addRecipe = {
-		// 		status: 'success',
-		// 		log: addRecipeLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Add Recipe FAILED:', error.message)
-		// 	result.addRecipe = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Add Recipe
+		try {
+			const { addRecipeLog } = await addRecipe(driver)
+			result.addRecipe = {
+				status: 'success',
+				log: addRecipeLog,
+			}
+		} catch (error) {
+			console.error('Add Recipe FAILED:', error.message)
+			result.addRecipe = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #My Recipes
-		// try {
-		// 	const { myRecipesLog } = await myRecipes(driver)
-		// 	result.myRecipes = {
-		// 		status: 'success',
-		// 		log: myRecipesLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('My Recipes FAILED:', error.message)
-		// 	result.myRecipes = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #My Recipes
+		try {
+			const { myRecipesLog } = await myRecipes(driver)
+			result.myRecipes = {
+				status: 'success',
+				log: myRecipesLog,
+			}
+		} catch (error) {
+			console.error('My Recipes FAILED:', error.message)
+			result.myRecipes = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #My Saved Recipes
 		try {
@@ -173,8 +172,9 @@ async function startTest() {
 		console.log('--------------- Something went wrong:', error)
 	} finally {
 		console.log('--------------- End ---------------')
+		result.time = timePrettier(Date.now() - startTime)
+		console.log('FINAL RESULT:', result)
 		await driver.sleep(5000)
 		await driver.quit()
-		return result
 	}
-}
+})()

@@ -17,7 +17,7 @@ const saveFavoriteRecipe = async driver => {
 
 	console.log('--------------- Save Favorite Recipe Ended ---------------')
 
-	return { resetFilterLog: 'successfully' }
+	return { saveFavoriteRecipeLog: 'successfully' }
 }
 
 module.exports = { saveFavoriteRecipe }

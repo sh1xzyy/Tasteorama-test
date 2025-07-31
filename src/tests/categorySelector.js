@@ -1,6 +1,8 @@
 const { until, By } = require('selenium-webdriver')
 const { sleep } = require('../utils/sleep')
 const { CATEGORY_LIST } = require('../constants/categoryList')
+const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
+const { resetFilter } = require('./resetFilter')
 
 const categorySelector = async driver => {
 	console.log('--------------- Category Selector Started ---------------')
@@ -10,6 +12,7 @@ const categorySelector = async driver => {
 		until.elementLocated(By.xpath('//span[contains(text(), "Category")]'))
 	)
 	await driver.wait(until.elementIsVisible(categorySelector), 5000)
+	await scrollWindowToElement(driver, categorySelector, 1000)
 
 	// Проходимся по каждой категории - нажимаем на каждую
 	for (let i = 0; i <= CATEGORY_LIST.length; i++) {

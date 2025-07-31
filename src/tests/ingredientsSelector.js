@@ -1,6 +1,7 @@
 const { until, By, Key } = require('selenium-webdriver')
 const { sleep } = require('../utils/sleep')
 const { INGREDIENTS_LIST } = require('../constants/ingredientsList')
+const { resetFilter } = require('./resetFilter')
 
 const ingredientsSelector = async driver => {
 	console.log('--------------- Ingredients Selector Started ---------------')
@@ -10,6 +11,7 @@ const ingredientsSelector = async driver => {
 		until.elementLocated(By.xpath('//span[contains(text(), "Ingredient")]'))
 	)
 	await driver.wait(until.elementIsVisible(ingredientSelector), 5000)
+	await scrollWindowToElement(driver, categorySelector, 1000)
 
 	// Проходимся по каждому ингредиенту - нажимаем на каждый
 	for (let i = 0; i <= INGREDIENTS_LIST.length; i++) {

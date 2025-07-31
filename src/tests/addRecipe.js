@@ -23,6 +23,7 @@ const addRecipe = async driver => {
 		until.elementLocated(By.css('nav a[href="/add-recipe"]'))
 	)
 	await driver.wait(until.elementIsVisible(addRecipeBtn), 5000)
+	await scrollWindowToElement(driver, addRecipeBtn, 1000)
 	await addRecipeBtn.click()
 
 	// Находим все элементы формы в DOM
@@ -155,6 +156,7 @@ const addRecipe = async driver => {
 
 	await thumb.sendKeys(filePath)
 	await sleep(driver, 1000)
+
 	// #Send form
 	await scrollWindowToElement(driver, submitBtn)
 	await sleep(driver, 1000)
