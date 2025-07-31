@@ -14,6 +14,7 @@ const {
 const {
 	DELETE_INGREDIENTS_LIST,
 } = require('../constants/deleteRecipeIngredients')
+const { log } = require('console')
 
 const addRecipe = async driver => {
 	console.log('--------------- Add Recipe Started ---------------')
@@ -102,6 +103,7 @@ const addRecipe = async driver => {
 	await sleep(driver, 1000)
 	await categoryItem.click()
 
+
 	// #Ingredients name and amount
 	for (let i = 0; i < RECIPE_INGREDIENTS_LIST.length; i++) {
 		// Ingredients name
@@ -127,11 +129,18 @@ const addRecipe = async driver => {
 		await addIngredient.click()
 	}
 
+
+
+console.log("delete");
+
 	// #Delete some ingredients
 	for (let i = 0; i < DELETE_INGREDIENTS_LIST.length; i++) {
 		const deleteIngredientBtn = await driver.wait(
 			until.elementLocated(
-				By.xpath(`//li[contains(., "${DELETE_INGREDIENTS_LIST[i]}")]/button`)
+				By.xpath(
+					`//li[.//span[contains(., "${DELETE_INGREDIENTS_LIST[i]}")]]/button
+`
+				)
 			)
 		)
 		await driver.wait(until.elementIsVisible(deleteIngredientBtn), 5000)
@@ -141,6 +150,10 @@ const addRecipe = async driver => {
 		await sleep(driver, 1000)
 	}
 
+console.log("delete end");
+
+console.log("Instructions");
+	
 	// #Instructions
 	await scrollWindowToElement(driver, instructions)
 	await slowType(driver, instructions, INSTRUCTIONS_TEXT)
@@ -148,6 +161,10 @@ const addRecipe = async driver => {
 	await scrollWindowToElement(driver, thumb)
 	await sleep(driver, 1000)
 
+console.log("Instructions end");
+
+console.log("Set thumb");
+	
 	// #Set thumb of recipe
 	const filePath = path.resolve(
 		__dirname,
@@ -156,6 +173,8 @@ const addRecipe = async driver => {
 
 	await thumb.sendKeys(filePath)
 	await sleep(driver, 1000)
+
+console.log("Set thumb end");
 
 	// #Send form
 	await scrollWindowToElement(driver, submitBtn)

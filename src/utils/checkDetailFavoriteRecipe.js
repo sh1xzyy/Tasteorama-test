@@ -7,6 +7,8 @@ const checkDetailFavoriteRecipe = async (
 	primaryNavLink,
 	nestedNavLink
 ) => {
+	console.log('dEATAIL')
+
 	await sleep(driver, 1000)
 
 	// Находим кнопку Toggle Favorite и нажимаем 2 раза
