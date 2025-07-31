@@ -14,7 +14,7 @@ const ingredientsSelector = async driver => {
 	await scrollWindowToElement(driver, categorySelector, 1000)
 
 	// Проходимся по каждому ингредиенту - нажимаем на каждый
-	for (let i = 0; i <= INGREDIENTS_LIST.length; i++) {
+	for (let i = 0; i < INGREDIENTS_LIST.length; i++) {
 		await ingredientSelector.click()
 		await sleep(driver, 1000)
 

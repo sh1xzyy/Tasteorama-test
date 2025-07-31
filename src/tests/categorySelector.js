@@ -15,7 +15,7 @@ const categorySelector = async driver => {
 	await scrollWindowToElement(driver, categorySelector, 1000)
 
 	// Проходимся по каждой категории - нажимаем на каждую
-	for (let i = 0; i <= CATEGORY_LIST.length; i++) {
+	for (let i = 0; i < CATEGORY_LIST.length; i++) {
 		await categorySelector.click()
 		await sleep(driver, 1000)
 

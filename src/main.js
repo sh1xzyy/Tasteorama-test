@@ -44,15 +44,15 @@ const { timePrettier } = require('./utils/timePrettier.js')
 		}
 		await sleep(driver, 2000)
 
-		// // #Category Selector
-		// try {
-		// 	const { categorySelectorLog } = await categorySelector(driver)
-		// 	result.categorySelector = { status: 'success', log: categorySelectorLog }
-		// } catch (error) {
-		// 	console.error('Category Selector FAILED:', error.message)
-		// 	result.categorySelector = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Category Selector
+		try {
+			const { categorySelectorLog } = await categorySelector(driver)
+			result.categorySelector = { status: 'success', log: categorySelectorLog }
+		} catch (error) {
+			console.error('Category Selector FAILED:', error.message)
+			result.categorySelector = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// // #Ingredients Selector
 		// try {
@@ -77,18 +77,18 @@ const { timePrettier } = require('./utils/timePrettier.js')
 		// }
 		// await sleep(driver, 2000)
 
-		// // #Search Bar
-		// try {
-		// 	const { searchBarLog } = await searchBar(driver)
-		// 	result.searchBar = {
-		// 		status: 'success',
-		// 		log: searchBarLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.searchBar = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Search Bar
+		try {
+			const { searchBarLog } = await searchBar(driver)
+			result.searchBar = {
+				status: 'success',
+				log: searchBarLog,
+			}
+		} catch (error) {
+			console.error('Ingredients Selector FAILED:', error.message)
+			result.searchBar = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// // #Load More
 		// try {
@@ -117,17 +117,17 @@ const { timePrettier } = require('./utils/timePrettier.js')
 		// await sleep(driver, 2000)
 
 		// #Add Recipe
-		try {
-			const { addRecipeLog } = await addRecipe(driver)
-			result.addRecipe = {
-				status: 'success',
-				log: addRecipeLog,
-			}
-		} catch (error) {
-			console.error('Add Recipe FAILED:', error.message)
-			result.addRecipe = { status: 'failed', error: error.message }
-		}
-		await sleep(driver, 2000)
+		// try {
+		// 	const { addRecipeLog } = await addRecipe(driver)
+		// 	result.addRecipe = {
+		// 		status: 'success',
+		// 		log: addRecipeLog,
+		// 	}
+		// } catch (error) {
+		// 	console.error('Add Recipe FAILED:', error.message)
+		// 	result.addRecipe = { status: 'failed', error: error.message }
+		// }
+		// await sleep(driver, 2000)
 
 		// #My Recipes
 		// try {
@@ -183,17 +183,17 @@ const { timePrettier } = require('./utils/timePrettier.js')
 
 		// #Logout
 
-		try {
-			const { logoutLog } = await logout(driver)
-			result.logout = {
-				status: 'success',
-				log: logoutLog,
-			}
-		} catch (error) {
-			console.error('Logout FAILED:', error.message)
-			result.logout = { status: 'failed', error: error.message }
-		}
-		await sleep(driver, 2000)
+		// try {
+		// 	const { logoutLog } = await logout(driver)
+		// 	result.logout = {
+		// 		status: 'success',
+		// 		log: logoutLog,
+		// 	}
+		// } catch (error) {
+		// 	console.error('Logout FAILED:', error.message)
+		// 	result.logout = { status: 'failed', error: error.message }
+		// }
+		// await sleep(driver, 2000)
 	} catch (error) {
 		console.log('--------------- Something went wrong:', error)
 	} finally {

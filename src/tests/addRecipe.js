@@ -103,7 +103,6 @@ const addRecipe = async driver => {
 	await sleep(driver, 1000)
 	await categoryItem.click()
 
-
 	// #Ingredients name and amount
 	for (let i = 0; i < RECIPE_INGREDIENTS_LIST.length; i++) {
 		// Ingredients name
@@ -129,17 +128,12 @@ const addRecipe = async driver => {
 		await addIngredient.click()
 	}
 
-
-
-console.log("delete");
-
 	// #Delete some ingredients
 	for (let i = 0; i < DELETE_INGREDIENTS_LIST.length; i++) {
 		const deleteIngredientBtn = await driver.wait(
 			until.elementLocated(
 				By.xpath(
-					`//li[.//span[contains(., "${DELETE_INGREDIENTS_LIST[i]}")]]/button
-`
+					`//li[.//span[contains(., "${DELETE_INGREDIENTS_LIST[i]}")]]/button`
 				)
 			)
 		)
@@ -150,10 +144,6 @@ console.log("delete");
 		await sleep(driver, 1000)
 	}
 
-console.log("delete end");
-
-console.log("Instructions");
-	
 	// #Instructions
 	await scrollWindowToElement(driver, instructions)
 	await slowType(driver, instructions, INSTRUCTIONS_TEXT)
@@ -161,10 +151,6 @@ console.log("Instructions");
 	await scrollWindowToElement(driver, thumb)
 	await sleep(driver, 1000)
 
-console.log("Instructions end");
-
-console.log("Set thumb");
-	
 	// #Set thumb of recipe
 	const filePath = path.resolve(
 		__dirname,
@@ -173,8 +159,6 @@ console.log("Set thumb");
 
 	await thumb.sendKeys(filePath)
 	await sleep(driver, 1000)
-
-console.log("Set thumb end");
 
 	// #Send form
 	await scrollWindowToElement(driver, submitBtn)
