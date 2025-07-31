@@ -8,7 +8,8 @@ const logout = async driver => {
 
 	// Находим кнопку Logout (в DOM и визуально) - прокручиваем стр. до кнопки - нажимаем
 	const logoutBtn = await driver.wait(
-		until.elementLocated(By.css('button[aria-label="Logout"]'))
+		until.elementLocated(By.css('button[aria-label="Logout"]')),
+		5000
 	)
 	await driver.wait(until.elementIsVisible(logoutBtn), 5000)
 	await scrollWindowToElement(driver, logoutBtn, 1000)
@@ -18,7 +19,8 @@ const logout = async driver => {
 	if (logoutBtn) {
 		// Находим кнопку закрывающую модальное окно
 		const closeBtn = await driver.wait(
-			until.elementLocated(By.xpath('//div[contains(@class,"modal")]/button'))
+			until.elementLocated(By.xpath('//div[contains(@class,"modal")]/button')),
+			5000
 		)
 		await driver.wait(until.elementIsVisible(closeBtn), 5000)
 		await closeBtn.click()
@@ -27,7 +29,8 @@ const logout = async driver => {
 		// Открываем модальное окно и находим кнопку отменяющую выход пользователя
 		await openLogoutModal(driver, logoutBtn)
 		const cancelBtn = await driver.wait(
-			until.elementLocated(By.xpath('//button[contains(text(), "Cancel")]'))
+			until.elementLocated(By.xpath('//button[contains(text(), "Cancel")]')),
+			5000
 		)
 		await driver.wait(until.elementIsVisible(cancelBtn), 5000)
 		await cancelBtn.sendKeys(Key.RETURN)
@@ -36,14 +39,15 @@ const logout = async driver => {
 		// Открываем модальное окно и находим кнопку подтверждающую выход пользователя
 		await openLogoutModal(driver, logoutBtn)
 		const logoutConfirmBtn = await driver.wait(
-			until.elementLocated(By.xpath('//button[contains(text(), "Log out")]'))
+			until.elementLocated(By.xpath('//button[contains(text(), "Log out")]')),
+			5000
 		)
 		await driver.wait(until.elementIsVisible(logoutConfirmBtn), 5000)
 		await logoutConfirmBtn.sendKeys(Key.RETURN)
 	}
 
+	// Логирование
 	console.log('--------------- Logout Ended ---------------')
-
 	return { logoutLog: 'successfully' }
 }
 

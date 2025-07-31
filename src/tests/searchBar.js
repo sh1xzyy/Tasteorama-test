@@ -9,7 +9,8 @@ const searchBar = async driver => {
 
 	// Находим поле ввода
 	const searchField = await driver.wait(
-		until.elementLocated(By.css('div > form > input[type="text"]'))
+		until.elementLocated(By.css('div > form > input[type="text"]')),
+		5000
 	)
 	await driver.wait(until.elementIsVisible(searchField), 5000)
 	await scrollWindowToElement(driver, searchField, 1000)
@@ -23,7 +24,8 @@ const searchBar = async driver => {
 			const resetSearchAndFilters = await driver.wait(
 				until.elementLocated(
 					By.xpath("//button[contains(text(), 'Reset search and filters')]")
-				)
+				),
+				5000
 			)
 			await driver.wait(until.elementIsVisible(resetSearchAndFilters), 5000)
 			await scrollWindowToElement(driver, resetSearchAndFilters, 2000)
@@ -32,9 +34,9 @@ const searchBar = async driver => {
 		await sleep(driver, 2000)
 	}
 
+	// Логирование
 	console.log('--------------- Search Bar Ended ---------------')
-
-	return { resetFilterLog: 'successfully' }
+	return { searchBarLog: 'successfully' }
 }
 
 module.exports = { searchBar }

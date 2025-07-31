@@ -54,28 +54,38 @@ const { timePrettier } = require('./utils/timePrettier.js')
 		}
 		await sleep(driver, 2000)
 
-		// // #Ingredients Selector
-		// try {
-		// 	const { ingredientsSelectorLog } = await ingredientsSelector(driver)
-		// 	result.ingredientsSelector = {
-		// 		status: 'success',
-		// 		log: ingredientsSelectorLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.ingredientsSelector = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Reset Filter
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Ingredients Selector
+		try {
+			const { ingredientsSelectorLog } = await ingredientsSelector(driver)
+			result.ingredientsSelector = {
+				status: 'success',
+				log: ingredientsSelectorLog,
+			}
+		} catch (error) {
+			console.error('Ingredients Selector FAILED:', error.message)
+			result.ingredientsSelector = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #Reset Filter
-		// try {
-		// 	const { resetFilterLog } = await resetFilter(driver)
-		// 	result.resetFilter = { status: 'success', log: resetFilterLog }
-		// } catch (error) {
-		// 	console.error('Reset Filter FAILED:', error.message)
-		// 	result.resetFilter = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #Search Bar
 		try {
@@ -85,115 +95,200 @@ const { timePrettier } = require('./utils/timePrettier.js')
 				log: searchBarLog,
 			}
 		} catch (error) {
-			console.error('Ingredients Selector FAILED:', error.message)
+			console.error('Search Bar FAILED:', error.message)
 			result.searchBar = { status: 'failed', error: error.message }
 		}
 		await sleep(driver, 2000)
 
-		// // #Load More
-		// try {
-		// 	const { loadMoreLog } = await loadMore(driver)
-		// 	result.loadMore = {
-		// 		status: 'success',
-		// 		log: loadMoreLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.loadMore = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Load More --- Важно добавить 2 аргумента (1: driver, 2: кол. нажатий на кнопку)
+		try {
+			const { loadMoreLog } = await loadMore(driver, 3)
+			result.loadMore1 = {
+				status: 'success',
+				log: loadMoreLog,
+			}
+		} catch (error) {
+			console.error('Load More FAILED:', error.message)
+			result.loadMore1 = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Save Recipe To Favorite
-		// try {
-		// 	const { saveFavoriteRecipeLog } = await saveFavoriteRecipe(driver)
-		// 	result.saveFavoriteRecipe = {
-		// 		status: 'success',
-		// 		log: saveFavoriteRecipeLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Save Favorite Recipe FAILED:', error.message)
-		// 	result.saveFavoriteRecipe = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Save Recipe To Favorite
+		try {
+			const { saveFavoriteRecipeLog } = await saveFavoriteRecipe(driver)
+			result.saveFavoriteRecipe = {
+				status: 'success',
+				log: saveFavoriteRecipeLog,
+			}
+		} catch (error) {
+			console.error('Save Favorite Recipe FAILED:', error.message)
+			result.saveFavoriteRecipe = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #Add Recipe
-		// try {
-		// 	const { addRecipeLog } = await addRecipe(driver)
-		// 	result.addRecipe = {
-		// 		status: 'success',
-		// 		log: addRecipeLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Add Recipe FAILED:', error.message)
-		// 	result.addRecipe = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		try {
+			const { addRecipeLog } = await addRecipe(driver)
+			result.addRecipe = {
+				status: 'success',
+				log: addRecipeLog,
+			}
+		} catch (error) {
+			console.error('Add Recipe FAILED:', error.message)
+			result.addRecipe = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #My Recipes
-		// try {
-		// 	const { myRecipesLog } = await myRecipes(driver)
-		// 	result.myRecipes = {
-		// 		status: 'success',
-		// 		log: myRecipesLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('My Recipes FAILED:', error.message)
-		// 	result.myRecipes = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		try {
+			const { myRecipesLog } = await myRecipes(driver)
+			result.myRecipes = {
+				status: 'success',
+				log: myRecipesLog,
+			}
+		} catch (error) {
+			console.error('My Recipes FAILED:', error.message)
+			result.myRecipes = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Load More
-		// try {
-		// 	const { loadMoreLog } = await loadMore(driver)
-		// 	result.loadMore = {
-		// 		status: 'success',
-		// 		log: loadMoreLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.loadMore = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Load More --- Важно добавить 2 аргумента (1: driver, 2: кол. нажатий на кнопку)
+		try {
+			const { loadMoreLog } = await loadMore(driver, 1)
+			result.loadMore2 = {
+				status: 'success',
+				log: loadMoreLog,
+			}
+		} catch (error) {
+			console.error('Load More FAILED:', error.message)
+			result.loadMore2 = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Category Selector
+		try {
+			const { categorySelectorLog } = await categorySelector(driver)
+			result.categorySelector = { status: 'success', log: categorySelectorLog }
+		} catch (error) {
+			console.error('Category Selector FAILED:', error.message)
+			result.categorySelector = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Reset Filter
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Ingredients Selector
+		try {
+			const { ingredientsSelectorLog } = await ingredientsSelector(driver)
+			result.ingredientsSelector = {
+				status: 'success',
+				log: ingredientsSelectorLog,
+			}
+		} catch (error) {
+			console.error('Ingredients Selector FAILED:', error.message)
+			result.ingredientsSelector = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Reset Filter
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #My Saved Recipes
-		// try {
-		// 	const { mySavedRecipesLog } = await mySavedRecipes(driver)
-		// 	result.mySavedRecipes = {
-		// 		status: 'success',
-		// 		log: mySavedRecipesLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('My Saved Recipes FAILED:', error.message)
-		// 	result.mySavedRecipes = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		try {
+			const { mySavedRecipesLog } = await mySavedRecipes(driver)
+			result.mySavedRecipes = {
+				status: 'success',
+				log: mySavedRecipesLog,
+			}
+		} catch (error) {
+			console.error('My Saved Recipes FAILED:', error.message)
+			result.mySavedRecipes = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
-		// // #Load More
-		// try {
-		// 	const { loadMoreLog } = await loadMore(driver)
-		// 	result.loadMore = {
-		// 		status: 'success',
-		// 		log: loadMoreLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Ingredients Selector FAILED:', error.message)
-		// 	result.loadMore = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		// #Load More --- Важно добавить 2 аргумента (1: driver, 2: кол. нажатий на кнопку)
+		try {
+			const { loadMoreLog } = await loadMore(driver, 1)
+			result.loadMore3 = {
+				status: 'success',
+				log: loadMoreLog,
+			}
+		} catch (error) {
+			console.error('Load More FAILED:', error.message)
+			result.loadMore3 = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Category Selector
+		try {
+			const { categorySelectorLog } = await categorySelector(driver)
+			result.categorySelector = { status: 'success', log: categorySelectorLog }
+		} catch (error) {
+			console.error('Category Selector FAILED:', error.message)
+			result.categorySelector = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Reset Filter
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Ingredients Selector
+		try {
+			const { ingredientsSelectorLog } = await ingredientsSelector(driver)
+			result.ingredientsSelector = {
+				status: 'success',
+				log: ingredientsSelectorLog,
+			}
+		} catch (error) {
+			console.error('Ingredients Selector FAILED:', error.message)
+			result.ingredientsSelector = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
+
+		// #Reset Filter
+		try {
+			const { resetFilterLog } = await resetFilter(driver)
+			result.resetFilter = { status: 'success', log: resetFilterLog }
+		} catch (error) {
+			console.error('Reset Filter FAILED:', error.message)
+			result.resetFilter = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 
 		// #Logout
-
-		// try {
-		// 	const { logoutLog } = await logout(driver)
-		// 	result.logout = {
-		// 		status: 'success',
-		// 		log: logoutLog,
-		// 	}
-		// } catch (error) {
-		// 	console.error('Logout FAILED:', error.message)
-		// 	result.logout = { status: 'failed', error: error.message }
-		// }
-		// await sleep(driver, 2000)
+		try {
+			const { logoutLog } = await logout(driver)
+			result.logout = {
+				status: 'success',
+				log: logoutLog,
+			}
+		} catch (error) {
+			console.error('Logout FAILED:', error.message)
+			result.logout = { status: 'failed', error: error.message }
+		}
+		await sleep(driver, 2000)
 	} catch (error) {
 		console.log('--------------- Something went wrong:', error)
 	} finally {

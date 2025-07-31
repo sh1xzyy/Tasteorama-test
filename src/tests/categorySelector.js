@@ -9,7 +9,8 @@ const categorySelector = async driver => {
 
 	// Находим селектор категорий (в DOM и визуально)
 	const categorySelector = await driver.wait(
-		until.elementLocated(By.xpath('//span[contains(text(), "Category")]'))
+		until.elementLocated(By.xpath('//span[contains(text(), "Category")]')),
+		5000
 	)
 	await driver.wait(until.elementIsVisible(categorySelector), 5000)
 	await scrollWindowToElement(driver, categorySelector, 1000)
@@ -22,13 +23,16 @@ const categorySelector = async driver => {
 		const currentCategoryItem = await driver.wait(
 			until.elementLocated(
 				By.xpath(`//li[contains(text(), "${CATEGORY_LIST[i]}")]`)
-			)
+			),
+			5000
 		)
 		await driver.wait(until.elementIsVisible(currentCategoryItem))
 		await sleep(driver, 1000)
 		await currentCategoryItem.click()
 	}
 
+	// Логирование
+	console.log('--------------- Category Selector Ended ---------------')
 	return { categorySelectorLog: 'successfully' }
 }
 

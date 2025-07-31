@@ -8,14 +8,15 @@ const resetFilter = async driver => {
 	const resetFilters = await driver.wait(
 		until.elementLocated(
 			By.xpath('//button[contains(text(), "Reset Filters")]')
-		)
+		),
+		5000
 	)
 	await driver.wait(until.elementIsVisible(resetFilters))
 	await scrollWindowToElement(driver, resetFilters, 1000)
 	await resetFilters.click()
 
+	// Логирование
 	console.log('--------------- Reset Filter Ended ---------------')
-
 	return { resetFilterLog: 'successfully' }
 }
 

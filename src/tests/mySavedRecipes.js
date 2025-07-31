@@ -3,14 +3,13 @@ const { scrollWindowToElement } = require('../utils/scrollWindowToElement')
 const {
 	iterateRecipesAndUpdateFavorites,
 } = require('../utils/iterateRecipesAndUpdateFavorites')
+const { getMyProfileBtn } = require('../utils/getMyProfileBtn')
 
 const mySavedRecipes = async driver => {
 	console.log('--------------- My Saved Recipes Started ---------------')
 
-	const myProfileBtn = await driver.wait(
-		until.elementLocated(By.css('nav a[href="/profile/own"]'))
-	)
-	await driver.wait(until.elementIsVisible(myProfileBtn), 5000)
+	// Находим кнопку My Profile (в DOM и визуально) - прокручиваем стр. до кнопки - нажимаем
+	const { myProfileBtn } = await getMyProfileBtn(driver)
 	await scrollWindowToElement(driver, myProfileBtn, 1000)
 	await myProfileBtn.click()
 
@@ -30,8 +29,8 @@ const mySavedRecipes = async driver => {
 		'savedRecipes'
 	)
 
+	// Логирование
 	console.log('--------------- My Saved Recipes Ended ---------------')
-
 	return { mySavedRecipesLog: 'successfully' }
 }
 

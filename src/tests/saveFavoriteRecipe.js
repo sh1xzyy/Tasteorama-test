@@ -8,15 +8,16 @@ const saveFavoriteRecipe = async driver => {
 
 	// Находим навигационную кнопку Recipes (в DOM и визуально)
 	const recipesBtn = await driver.wait(
-		until.elementLocated(By.css('nav > a[href="/"]'))
+		until.elementLocated(By.css('nav > a[href="/"]')),
+		5000
 	)
 	await driver.wait(until.elementIsVisible(recipesBtn), 5000)
 
 	// Проходим по списку рецептов (добавляем и удаляем из избранного, включая проверку этих действий на странице доп. информации рецепта)
 	await iterateRecipesAndUpdateFavorites(driver, 12, recipesBtn)
 
+	// Логирование
 	console.log('--------------- Save Favorite Recipe Ended ---------------')
-
 	return { saveFavoriteRecipeLog: 'successfully' }
 }
 

@@ -7,8 +7,6 @@ const checkDetailFavoriteRecipe = async (
 	primaryNavLink,
 	nestedNavLink
 ) => {
-	console.log('dEATAIL')
-
 	await sleep(driver, 1000)
 
 	// Находим кнопку Toggle Favorite и нажимаем 2 раза
@@ -38,7 +36,7 @@ const checkDetailFavoriteRecipe = async (
 			)
 			await driver.wait(until.elementIsVisible(secondaryNavElement), 5000)
 			await scrollWindowToElement(driver, secondaryNavElement, 1000)
-		} else {
+		} else if (nestedNavLink === 'savedRecipes') {
 			secondaryNavElement = await driver.wait(
 				until.elementLocated(By.xpath('//a[contains(text(), "Saved Recipes")]'))
 			)

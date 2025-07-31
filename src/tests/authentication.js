@@ -6,20 +6,24 @@ const authentication = async driver => {
 
 	// Находим кнопку Login (в DOM и визуально) - нажимаем
 	const loginBtn = await driver.wait(
-		until.elementLocated(By.css('nav a[href="/auth/login"]'))
+		until.elementLocated(By.css('nav a[href="/auth/login"]')),
+		5000
 	)
 	await driver.wait(until.elementIsVisible(loginBtn), 5000)
 	await loginBtn.click()
 
 	// Находим элементы формы Login в DOM
 	const emailField = await driver.wait(
-		until.elementLocated(By.css('input[name="email"]'))
+		until.elementLocated(By.css('input[name="email"]')),
+		5000
 	)
 	const passwordField = await driver.wait(
-		until.elementLocated(By.css('input[name="password"]'))
+		until.elementLocated(By.css('input[name="password"]')),
+		5000
 	)
 	const submitBtn = await driver.wait(
-		until.elementLocated(By.xpath('//button[contains(text(), "Log In")]'))
+		until.elementLocated(By.xpath('//button[contains(text(), "Log In")]')),
+		5000
 	)
 
 	// Ждем пока все элементы формы отобразятся на странице
@@ -34,8 +38,8 @@ const authentication = async driver => {
 	// Отправляем форму
 	await submitBtn.sendKeys(Key.RETURN)
 
+	// Логирование
 	console.log('--------------- Authentication Ended ---------------')
-
 	return { authenticationLog: 'successfully' }
 }
 

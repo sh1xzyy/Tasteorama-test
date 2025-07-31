@@ -64,6 +64,8 @@ const authorization = async driver => {
 	// Отправляем форму
 	await submitBtn.sendKeys(Key.RETURN)
 
+	// Логирование
+	console.log('--------------- Authorization Ended ---------------')
 	return { authorizationLog: 'successfully' }
 }
 
